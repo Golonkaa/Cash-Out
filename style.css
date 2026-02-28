@@ -7,20 +7,29 @@ body {
     overflow-x: hidden;
 }
 
+/* DELIKATNY GLOBALNY GLOW */
+body {
+    text-shadow: 0 0 5px rgba(0,255,136,0.4);
+}
+
+/* KONTAINER */
 .container {
     margin-top: 15%;
 }
 
+/* H1 GLITCH */
 h1 {
     font-size: 3rem;
     text-shadow: 0 0 10px #00ff88;
-    animation: glitch 1s infinite; 
+    animation: glitch 1s infinite;
 }
 
+/* SUBTITLE */
 .subtitle {
     opacity: 0.6;
 }
 
+/* NAV */
 nav a {
     display: inline-block;
     margin: 20px;
@@ -34,8 +43,10 @@ nav a {
     nav a:hover {
         background: #00ff88;
         color: black;
+        box-shadow: 0 0 10px #00ff88;
     }
 
+/* INPUT */
 input {
     background: black;
     border: 1px solid #00ff88;
@@ -44,6 +55,7 @@ input {
     margin: 10px;
 }
 
+/* BUTTON */
 button {
     background: #00ff88;
     border: none;
@@ -51,19 +63,36 @@ button {
     cursor: pointer;
 }
 
+    button:hover {
+        box-shadow: 0 0 10px #00ff88;
+    }
+
+/* OUTPUT */
 #output {
     margin-top: 20px;
     min-height: 40px;
 }
 
+/* LEKKIE SCANLINES (bez animacji) */
 .scanlines {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient( to bottom, rgba(0,255,136,0.05), rgba(0,255,136,0.05) 1px, transparent 1px, transparent 3px );
+    inset: 0;
+    background: repeating-linear-gradient( to bottom, rgba(0,255,136,0.03), rgba(0,255,136,0.03) 1px, transparent 1px, transparent 4px );
     pointer-events: none;
+    animation: scanMove 20s linear infinite;
 }
 
+@keyframes scanMove {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 200px;
+    }
+}
+
+/* GLITCH */
 @keyframes glitch {
     0% {
         text-shadow: 2px 0 red, -2px 0 blue;
@@ -77,3 +106,4 @@ button {
         text-shadow: 2px 0 red, -2px 0 blue;
     }
 }
+
