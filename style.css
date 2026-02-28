@@ -1,3 +1,4 @@
+/* ---------- BODY ---------- */
 body {
     margin: 0;
     background: black;
@@ -7,19 +8,24 @@ body {
     overflow-x: hidden;
 }
 
+/* ---------- KONTAINER ---------- */
 .container {
     margin-top: 15%;
 }
 
+/* ---------- H1 - glitch dla ka¿dego g³ównego nag³ówka ---------- */
 h1 {
     font-size: 3rem;
     text-shadow: 0 0 10px #00ff88;
+    animation: glitch 1s infinite; /* glitch dla wszystkich h1 */
 }
 
+/* ---------- SUBTITLE ---------- */
 .subtitle {
     opacity: 0.6;
 }
 
+/* ---------- NAV ---------- */
 nav a {
     display: inline-block;
     margin: 20px;
@@ -35,6 +41,7 @@ nav a {
         color: black;
     }
 
+/* ---------- INPUT ---------- */
 input {
     background: black;
     border: 1px solid #00ff88;
@@ -43,6 +50,7 @@ input {
     margin: 10px;
 }
 
+/* ---------- BUTTON ---------- */
 button {
     background: #00ff88;
     border: none;
@@ -50,11 +58,13 @@ button {
     cursor: pointer;
 }
 
+/* ---------- OUTPUT ---------- */
 #output {
     margin-top: 20px;
     min-height: 40px;
 }
 
+/* ---------- SCANLINES ---------- */
 .scanlines {
     position: fixed;
     width: 100%;
@@ -63,10 +73,7 @@ button {
     pointer-events: none;
 }
 
-.glitch {
-    animation: glitch 1s infinite;
-}
-
+/* ---------- GLITCH ANIMACJA ---------- */
 @keyframes glitch {
     0% {
         text-shadow: 2px 0 red, -2px 0 blue;
