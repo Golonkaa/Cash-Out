@@ -1,82 +1,179 @@
 body {
     margin: 0;
-    background: black;
-    color: #00ff88;
-    font-family: "Courier New", monospace;
-    text-align: center;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background: #000;
+    color: #0f0;
     overflow-x: hidden;
 }
 
 .container {
-    margin-top: 15%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(0,0,0,0.85);
+    border: 2px solid #0f0;
+    box-shadow: 0 0 20px #0f0;
+    position: relative;
 }
 
 h1 {
-    font-size: 3rem;
-    text-shadow: 0 0 10px #00ff88;
+    font-size: 3em;
+    text-transform: uppercase;
+    position: relative;
+    color: #0f0;
+    animation: flicker 1.5s infinite alternate;
 }
 
-.subtitle {
-    opacity: 0.6;
-}
-
-nav a {
-    display: inline-block;
-    margin: 20px;
-    color: #00ff88;
-    text-decoration: none;
-    border: 1px solid #00ff88;
-    padding: 10px 20px;
-    transition: 0.3s;
-}
-
-    nav a:hover {
-        background: #00ff88;
-        color: black;
+    h1.glitch::before,
+    h1.glitch::after {
+        content: attr(class);
+        position: absolute;
+        left: 0;
+        width: 100%;
+        clip: rect(0,900px,0,0);
     }
 
-input {
-    background: black;
-    border: 1px solid #00ff88;
-    color: #00ff88;
+    h1.glitch::before {
+        animation: glitchTop 2s infinite linear alternate-reverse;
+        color: #f00;
+    }
+
+    h1.glitch::after {
+        animation: glitchBottom 1.5s infinite linear alternate-reverse;
+        color: #00f;
+    }
+
+p {
+    animation: flicker 2s infinite alternate;
+    line-height: 1.5em;
+}
+
+input, button {
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
     padding: 10px;
-    margin: 10px;
+    margin: 5px 0;
+    background: #000;
+    color: #0f0;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 10px #0f0;
 }
 
 button {
-    background: #00ff88;
-    border: none;
-    padding: 10px 20px;
     cursor: pointer;
+    transition: 0.2s all;
 }
 
-#output {
-    margin-top: 20px;
-    min-height: 40px;
+    button:hover {
+        color: #ff0;
+        box-shadow: 0 0 20px #ff0;
+    }
+
+a {
+    color: #0f0;
+    text-decoration: none;
+    transition: 0.2s all;
 }
+
+    a:hover {
+        color: #ff0;
+        text-shadow: 0 0 5px #ff0, 0 0 10px #ff0;
+    }
 
 .scanlines {
+    pointer-events: none;
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient( to bottom, rgba(0,255,136,0.05), rgba(0,255,136,0.05) 1px, transparent 1px, transparent 3px );
-    pointer-events: none;
+    background: repeating-linear-gradient( 0deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 1px, rgba(0,0,0,0.1) 2px );
+    z-index: 1000;
 }
 
-.glitch {
-    animation: glitch 1s infinite;
-}
-
-@keyframes glitch {
-    0% {
-        text-shadow: 2px 0 red, -2px 0 blue;
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
     }
 
     50% {
-        text-shadow: -2px 0 red, 2px 0 blue;
+        opacity: 0.8;
+    }
+}
+
+@keyframes glitchTop {
+    0% {
+        clip: rect(0, 900px, 0, 0);
+        transform: translate(0px, 0px);
+    }
+
+    20% {
+        clip: rect(0, 900px, 5px, 0);
+        transform: translate(-2px, -2px);
+    }
+
+    40% {
+        clip: rect(5px, 900px, 10px, 0);
+        transform: translate(2px, 2px);
+    }
+
+    60% {
+        clip: rect(0, 900px, 7px, 0);
+        transform: translate(-1px, 1px);
+    }
+
+    80% {
+        clip: rect(3px, 900px, 10px, 0);
+        transform: translate(1px, -1px);
     }
 
     100% {
-        text-shadow: 2px 0 red, -2px 0 blue;
+        clip: rect(0, 900px, 0, 0);
+        transform: translate(0px, 0px);
     }
+}
+
+@keyframes glitchBottom {
+    0% {
+        clip: rect(0, 900px, 0, 0);
+        transform: translate(0px, 0px);
+    }
+
+    20% {
+        clip: rect(3px, 900px, 8px, 0);
+        transform: translate(1px, -1px);
+    }
+
+    40% {
+        clip: rect(0px, 900px, 5px, 0);
+        transform: translate(-1px, 2px);
+    }
+
+    60% {
+        clip: rect(5px, 900px, 10px, 0);
+        transform: translate(2px, 0px);
+    }
+
+    80% {
+        clip: rect(2px, 900px, 6px, 0);
+        transform: translate(-2px, -1px);
+    }
+
+    100% {
+        clip: rect(0, 900px, 0, 0);
+        transform: translate(0px, 0px);
+    }
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient( 0deg, rgba(255,0,0,0.02), rgba(0,255,0,0.02) 1px, rgba(0,0,255,0.02) 2px );
+    mix-blend-mode: screen;
 }
