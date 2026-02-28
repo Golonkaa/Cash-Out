@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>CASH OUT! - Terminal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="scanlines"></div>
+
+    <div class="container">
+        <h1>ACCESS TERMINAL</h1>
+
+        <input type="text" id="codeInput" placeholder="ENTER CODE">
+        <button onclick="checkCode()">EXECUTE</button>
+
+        <div id="output"></div>
+
+        <br>
+        <a href="index.html">RETURN</a>
+    </div>
+
+    <script>
+
+        const commands = {
+            "Y2FzaG91dA==": "MTEvMDcvMTk3Nw==",
+            "cmVsZWFzZWRhdGU=": "Tm8gaW5mbw==",
+            "ZGV2bW9kZQ==": "RGV2ZWxvcGVyIGFjY2VzcyBkZW5pZWQuIE5vIHBlcm1taXNzaW9ucyB0byBjaGFuZ2UgbW9kZXM=",
+            "Z29sb25rYQ==": "Pz8/",
+            "dXBkYXRl": "Q2hlY2tpbmcgZm9yIHVwZGF0ZXMuLi4gRXZlcnl0aGluZyB1cCB0byBkYXRlISBMYXN0IHVwZGF0ZSAxMS8wNy8xOTc3"
+        };
+
+        function checkCode() {
+
+            const input = document.getElementById("codeInput").value.toLowerCase().trim();
+            const output = document.getElementById("output");
+
+            const encodedInput = btoa(input);
+
+            if (commands[encodedInput]) {
+                output.innerHTML = atob(commands[encodedInput]);
+            } else {
+                output.innerHTML = "Unknown command";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
